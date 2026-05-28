@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  ai_voice_sales_agent:
+    container_name: ai_voice_sales_agent
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ai_voice_sales_agent:latest
+    runtime: nvidia
+    environment:
+      PYTHONUNBUFFERED: "1"
+      NVIDIA_VISIBLE_DEVICES: "all"
+      NVIDIA_DRIVER_CAPABILITIES: "compute,utility"
+      RUN_PIPELINE: "1"
+      DATA_STAGE_CMD: "python3 /app/scripts/data/clean_prs.py && python3 /app/scripts/data/norm.py"
+      TRAIN_STAGE_CMD: "python3 /app/scripts/training/1_sft_train/sft_train.py"
+      MERGE_STAGE_CMD: "python3 /app/scripts/training/2_merge_adapter/merge.py"
+      EVAL_STAGE_CMD: "python3 /app/scripts/eval/llm-as-judgment.py"
+    volumes:
+      - hf_cache:/root/.cache/huggingface
+    restart: "no"
+
+volumes:
+  hf_cache:
