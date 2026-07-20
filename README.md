@@ -8,7 +8,7 @@ This project develops a production-grade LLM pipeline for ABC Energy’s Voice A
 # Architectural vision
 
 
-<img width="1024" height="559" alt="image" src="https://github.com/user-attachments/assets/d34ce8ca-02d0-4621-beab-b96a9b7124c0" />
+<img width="1401" height="761" alt="pica" src="https://github.com/user-attachments/assets/b230383c-0197-4387-acc7-28d6878970cf" />
 
 
 # Project Structure
